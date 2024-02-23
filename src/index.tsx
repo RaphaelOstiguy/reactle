@@ -5,12 +5,15 @@ import ReactDOM from 'react-dom'
 
 import App from './App'
 import { AlertProvider } from './context/AlertContext'
+import { LangProvider } from './context/LangContext'
 import reportWebVitals from './reportWebVitals'
 
 ReactDOM.render(
   <React.StrictMode>
     <AlertProvider>
-      <App />
+      <LangProvider>
+        <App />
+      </LangProvider>
     </AlertProvider>
   </React.StrictMode>,
   document.getElementById('root')
