@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 
-import { DELETE_TEXT, ENTER_TEXT } from '../../constants/strings'
 import { getStatuses } from '../../lib/statuses'
 import { localeAwareUpperCase } from '../../lib/words'
 import { Key } from './Key'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   onChar: (value: string) => void
@@ -22,6 +22,7 @@ export const Keyboard = ({
   guesses,
   isRevealing,
 }: Props) => {
+  const {t} = useTranslation()
   const charStatuses = getStatuses(solution, guesses)
 
   const onClick = (value: string) => {
@@ -80,7 +81,7 @@ export const Keyboard = ({
       </div>
       <div className="flex justify-center">
         <Key width={65.4} value="ENTER" onClick={onClick}>
-          {ENTER_TEXT}
+          {t("ENTER_TEXT")}
         </Key>
         {['Z', 'X', 'C', 'V', 'B', 'N', 'M'].map((key) => (
           <Key
@@ -92,7 +93,7 @@ export const Keyboard = ({
           />
         ))}
         <Key width={65.4} value="DELETE" onClick={onClick}>
-          {DELETE_TEXT}
+          {t("DELETE_TEXT")}
         </Key>
       </div>
     </div>

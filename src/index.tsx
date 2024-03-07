@@ -6,11 +6,13 @@ import ReactDOM from 'react-dom'
 import App from './App'
 import { AlertProvider } from './context/AlertContext'
 import reportWebVitals from './reportWebVitals'
+import { initLang } from "./lang/i18n.js";
 
+initLang();
 ReactDOM.render(
   <React.StrictMode>
     <AlertProvider>
-      <App />
+        <App />
     </AlertProvider>
   </React.StrictMode>,
   document.getElementById('root')

@@ -4,11 +4,6 @@ import { useState } from 'react'
 import DatePicker, { registerLocale } from 'react-datepicker'
 
 import { DATE_LOCALE } from '../../constants/settings'
-import {
-  DATEPICKER_CHOOSE_TEXT,
-  DATEPICKER_TITLE,
-  DATEPICKER_TODAY_TEXT,
-} from '../../constants/strings'
 import { getToday, getYesterday } from '../../lib/dateutils'
 import {
   firstGameDate,
@@ -17,6 +12,7 @@ import {
   periodInDays,
 } from '../../lib/words'
 import { BaseModal } from './BaseModal'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   isOpen: boolean
@@ -31,6 +27,7 @@ export const DatePickerModal = ({
   handleSelectDate,
   handleClose,
 }: Props) => {
+  const { t } = useTranslation()
   const lastGameDate = getLastGameDate(getYesterday())
   const [selectedDate, setSelectedDate] = useState(() => {
     if (initialDate == null || initialDate > lastGameDate) {
@@ -57,7 +54,7 @@ export const DatePickerModal = ({
 
   return (
     <BaseModal
-      title={DATEPICKER_TITLE}
+      title={t("DATEPICKER_TITLE")}
       isOpen={isOpen}
       handleClose={handleClose}
     >
@@ -128,7 +125,7 @@ export const DatePickerModal = ({
           disabled:focus:outline-none disabled:dark:border-gray-600 disabled:dark:bg-gray-800 disabled:dark:text-gray-400 sm:text-base sm:text-base"
           onClick={() => handleSelectDate(getToday())}
         >
-          {DATEPICKER_CHOOSE_TEXT} {DATEPICKER_TODAY_TEXT}
+          {t("DATEPICKER_CHOOSE_TEXT")} {t("DATEPICKER_TODAY_TEXT")}
         </button>
         <button
           type="button"
@@ -136,7 +133,7 @@ export const DatePickerModal = ({
           disabled={selectedDate >= getToday()}
           onClick={() => handleSelectDate(selectedDate)}
         >
-          {DATEPICKER_CHOOSE_TEXT}
+          {t("DATEPICKER_CHOOSE_TEXT")}
           <br />
           {format(selectedDate, buttonDateFormat, formatOptions)}
         </button>

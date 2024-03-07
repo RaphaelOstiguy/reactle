@@ -23,16 +23,6 @@ import {
   REVEAL_TIME_MS,
   WELCOME_INFO_MODAL_MS,
 } from './constants/settings'
-import {
-  CORRECT_WORD_MESSAGE,
-  DISCOURAGE_INAPP_BROWSER_TEXT,
-  GAME_COPIED_MESSAGE,
-  HARD_MODE_ALERT_MESSAGE,
-  NOT_ENOUGH_LETTERS_MESSAGE,
-  SHARE_FAILURE_TEXT,
-  WIN_MESSAGES,
-  WORD_NOT_FOUND_MESSAGE,
-} from './constants/strings'
 import { useAlert } from './context/AlertContext'
 import { isInAppBrowser } from './lib/browser'
 import {
@@ -53,8 +43,12 @@ import {
   solutionGameDate,
   unicodeLength,
 } from './lib/words'
+import { useTranslation } from "react-i18next";
+
 
 function App() {
+
+  const { t } = useTranslation();
   const isLatestGame = getIsLatestGame()
   const gameDate = getGameDate()
   const prefersDarkMode = window.matchMedia(
@@ -94,7 +88,7 @@ function App() {
     }
     if (loaded.guesses.length === MAX_CHALLENGES && !gameWasWon) {
       setIsGameLost(true)
-      showErrorAlert(CORRECT_WORD_MESSAGE(solution), {
+      showErrorAlert(t("CORRECT_WORD_MESSAGE", {solution}), {
         persist: true,
       })
     }
@@ -122,11 +116,11 @@ function App() {
   useEffect(() => {
     DISCOURAGE_INAPP_BROWSERS &&
       isInAppBrowser() &&
-      showErrorAlert(DISCOURAGE_INAPP_BROWSER_TEXT, {
+      showErrorAlert(t("DISCOURAGE_INAPP_BROWSER_TEXT"), {
         persist: false,
         durationMs: 7000,
       })
-  }, [showErrorAlert])
+  }, [showErrorAlert, t])
 
   useEffect(() => {
     if (isDarkMode) {
@@ -152,7 +146,7 @@ function App() {
       setIsHardMode(isHard)
       localStorage.setItem('gameMode', isHard ? 'hard' : 'normal')
     } else {
-      showErrorAlert(HARD_MODE_ALERT_MESSAGE)
+      showErrorAlert(t("HARD_MODE_ALERT_MESSAGE"))
     }
   }
 
@@ -171,8 +165,8 @@ function App() {
 
   useEffect(() => {
     if (isGameWon) {
-      const winMessage =
-        WIN_MESSAGES[Math.floor(Math.random() * WIN_MESSAGES.length)]
+      const winMessageKey = `WIN_MESSAGE_${Math.floor(Math.random() * 3) + 1}`;
+      const winMessage = t(winMessageKey)
       const delayMs = REVEAL_TIME_MS * solution.length
 
       showSuccessAlert(winMessage, {
@@ -214,14 +208,14 @@ function App() {
 
     if (!(unicodeLength(currentGuess) === solution.length)) {
       setCurrentRowClass('jiggle')
-      return showErrorAlert(NOT_ENOUGH_LETTERS_MESSAGE, {
+      return showErrorAlert(t("NOT_ENOUGH_LETTERS_MESSAGE"), {
         onClose: clearCurrentRowClass,
       })
     }
 
     if (!isWordInWordList(currentGuess)) {
       setCurrentRowClass('jiggle')
-      return showErrorAlert(WORD_NOT_FOUND_MESSAGE, {
+      return showErrorAlert(t("WORD_NOT_FOUND_MESSAGE"), {
         onClose: clearCurrentRowClass,
       })
     }
@@ -266,7 +260,7 @@ function App() {
           setStats(addStatsForCompletedGame(stats, guesses.length + 1))
         }
         setIsGameLost(true)
-        showErrorAlert(CORRECT_WORD_MESSAGE(solution), {
+        showErrorAlert(t("CORRECT_WORD_MESSAGE", {solution}), {
           persist: true,
           delayMs: REVEAL_TIME_MS * solution.length + 1,
         })
@@ -324,9 +318,9 @@ function App() {
             isLatestGame={isLatestGame}
             isGameLost={isGameLost}
             isGameWon={isGameWon}
-            handleShareToClipboard={() => showSuccessAlert(GAME_COPIED_MESSAGE)}
+            handleShareToClipboard={() => showSuccessAlert(t("GAME_COPIED_MESSAGE"))}
             handleShareFailure={() =>
-              showErrorAlert(SHARE_FAILURE_TEXT, {
+              showErrorAlert(t("SHARE_FAILURE_TEXT"), {
                 durationMs: LONG_ALERT_TIME_MS,
               })
             }

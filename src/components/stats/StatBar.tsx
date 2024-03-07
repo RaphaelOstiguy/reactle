@@ -1,9 +1,4 @@
-import {
-  BEST_STREAK_TEXT,
-  CURRENT_STREAK_TEXT,
-  SUCCESS_RATE_TEXT,
-  TOTAL_TRIES_TEXT,
-} from '../../constants/strings'
+import { useTranslation } from 'react-i18next'
 import { GameStats } from '../../lib/localStorage'
 
 type Props = {
@@ -26,12 +21,13 @@ const StatItem = ({
 }
 
 export const StatBar = ({ gameStats }: Props) => {
+  const {t} = useTranslation()
   return (
     <div className="my-2 flex justify-center">
-      <StatItem label={TOTAL_TRIES_TEXT} value={gameStats.totalGames} />
-      <StatItem label={SUCCESS_RATE_TEXT} value={`${gameStats.successRate}%`} />
-      <StatItem label={CURRENT_STREAK_TEXT} value={gameStats.currentStreak} />
-      <StatItem label={BEST_STREAK_TEXT} value={gameStats.bestStreak} />
+      <StatItem label={t("TOTAL_TRIES_TEXT")} value={gameStats.totalGames} />
+      <StatItem label={t("SUCCESS_RATE_TEXT")} value={`${gameStats.successRate}%`} />
+      <StatItem label={t("CURRENT_STREAK_TEXT")} value={gameStats.currentStreak} />
+      <StatItem label={t("BEST_STREAK_TEXT")} value={gameStats.bestStreak} />
     </div>
   )
 }

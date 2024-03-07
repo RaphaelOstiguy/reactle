@@ -7,13 +7,6 @@ import {
   ENABLE_ARCHIVED_GAMES,
   ENABLE_MIGRATE_STATS,
 } from '../../constants/settings'
-import {
-  ARCHIVE_GAMEDATE_TEXT,
-  GUESS_DISTRIBUTION_TEXT,
-  NEW_WORD_TEXT,
-  SHARE_TEXT,
-  STATISTICS_TITLE,
-} from '../../constants/strings'
 import { GameStats } from '../../lib/localStorage'
 import { shareStatus } from '../../lib/share'
 import { solutionGameDate, tomorrow } from '../../lib/words'
@@ -21,6 +14,7 @@ import { Histogram } from '../stats/Histogram'
 import { MigrationIntro } from '../stats/MigrationIntro'
 import { StatBar } from '../stats/StatBar'
 import { BaseModal } from './BaseModal'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   isOpen: boolean
@@ -57,10 +51,11 @@ export const StatsModal = ({
   isHighContrastMode,
   numberOfGuessesMade,
 }: Props) => {
+  const { t } = useTranslation()
   if (gameStats.totalGames <= 0) {
     return (
       <BaseModal
-        title={STATISTICS_TITLE}
+        title={t("STATISTICS_TITLE")}
         isOpen={isOpen}
         handleClose={handleClose}
       >
@@ -73,13 +68,13 @@ export const StatsModal = ({
   }
   return (
     <BaseModal
-      title={STATISTICS_TITLE}
+      title={t("STATISTICS_TITLE")}
       isOpen={isOpen}
       handleClose={handleClose}
     >
       <StatBar gameStats={gameStats} />
       <h4 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100">
-        {GUESS_DISTRIBUTION_TEXT}
+        {t("GUESS_DISTRIBUTION_TEXT")}
       </h4>
       <Histogram
         isLatestGame={isLatestGame}
@@ -92,7 +87,7 @@ export const StatsModal = ({
           <div className="inline-block w-full text-left">
             {(!ENABLE_ARCHIVED_GAMES || isLatestGame) && (
               <div>
-                <h5>{NEW_WORD_TEXT}</h5>
+                <h5>{t("NEW_WORD_TEXT")}</h5>
                 <Countdown
                   className="text-lg font-medium text-gray-900 dark:text-gray-100"
                   date={tomorrow}
@@ -104,7 +99,7 @@ export const StatsModal = ({
               <div className="mt-2 inline-flex">
                 <ClockIcon className="mr-1 mt-2 mt-1 h-5 w-5 stroke-black dark:stroke-white" />
                 <div className="mt-1 ml-1 text-center text-sm sm:text-base">
-                  <strong>{ARCHIVE_GAMEDATE_TEXT}:</strong>
+                  <strong>{t("ARCHIVE_GAMEDATE_TEXT")}:</strong>
                   <br />
                   {format(solutionGameDate, 'd MMMM yyyy', {
                     locale: DATE_LOCALE,
@@ -131,7 +126,7 @@ export const StatsModal = ({
               }}
             >
               <ShareIcon className="mr-2 h-6 w-6 cursor-pointer dark:stroke-white" />
-              {SHARE_TEXT}
+              {t("SHARE_TEXT")}
             </button>
           </div>
         </div>

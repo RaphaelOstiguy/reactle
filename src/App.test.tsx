@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import React from 'react'
 
 import App from './App'
-import { GAME_TITLE } from './constants/strings'
+import { initLang } from './lang/i18n'
 
 beforeEach(() => {
   Object.defineProperty(window, 'matchMedia', {
@@ -21,7 +21,8 @@ beforeEach(() => {
 })
 
 test('renders App component', () => {
+  initLang()
   render(<App />)
-  const linkElement = screen.getByText(GAME_TITLE)
+  const linkElement = screen.getByText("Reactle")
   expect(linkElement).toBeInTheDocument()
 })

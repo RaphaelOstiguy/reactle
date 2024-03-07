@@ -1,9 +1,9 @@
 import { UAParser } from 'ua-parser-js'
 
 import { MAX_CHALLENGES } from '../constants/settings'
-import { GAME_TITLE } from '../constants/strings'
 import { getGuessStatuses } from './statuses'
 import { solutionIndex, unicodeSplit } from './words'
+import i18n from 'i18next';
 
 const webShareApiDeviceTypes: string[] = ['mobile', 'smarttv', 'wearable']
 const parser = new UAParser()
@@ -21,7 +21,7 @@ export const shareStatus = (
   handleShareFailure: () => void
 ) => {
   const textToShare =
-    `${GAME_TITLE} ${solutionIndex} ${
+    `${i18n.t("GAME_TITLE")} ${solutionIndex} ${
       lost ? 'X' : guesses.length
     }/${MAX_CHALLENGES}${isHardMode ? '*' : ''}\n\n` +
     generateEmojiGrid(

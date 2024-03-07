@@ -9,11 +9,11 @@ import { default as GraphemeSplitter } from 'grapheme-splitter'
 import queryString from 'query-string'
 
 import { ENABLE_ARCHIVED_GAMES } from '../constants/settings'
-import { NOT_CONTAINED_MESSAGE, WRONG_SPOT_MESSAGE } from '../constants/strings'
 import { VALID_GUESSES } from '../constants/validGuesses'
 import { WORDS } from '../constants/wordlist'
 import { getToday } from './dateutils'
 import { getGuessStatuses } from './statuses'
+import i18n from 'i18next';
 
 // 1 January 2022 Game Epoch
 export const firstGameDate = new Date(2022, 0)
@@ -49,7 +49,7 @@ export const findFirstUnusedReveal = (word: string, guesses: string[]) => {
       lettersLeftArray.push(splitGuess[i])
     }
     if (statuses[i] === 'correct' && splitWord[i] !== splitGuess[i]) {
-      return WRONG_SPOT_MESSAGE(splitGuess[i], i + 1)
+      return i18n.t('WRONG_SPOT_MESSAGE', { guess: splitGuess[i], position: i + 1 });
     }
   }
 
@@ -64,7 +64,7 @@ export const findFirstUnusedReveal = (word: string, guesses: string[]) => {
   }
 
   if (lettersLeftArray.length > 0) {
-    return NOT_CONTAINED_MESSAGE(lettersLeftArray[0])
+    return i18n.t("NOT_CONTAINED_MESSAGE", {letter: lettersLeftArray[0]})
   }
   return false
 }
