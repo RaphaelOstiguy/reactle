@@ -9,8 +9,8 @@ function initLang() {
       fr: frlng,
       en: enlng,
     },
-    lng: "en",
-    fallbackLng: "fr",
+    lng: "fr",
+    fallbackLng: "en",
     interpolation: {
       escapeValue: false,
     },
