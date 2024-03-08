@@ -30,6 +30,13 @@
     "DATEPICKER_TITLE" : "Choose a past date",
     "DATEPICKER_CHOOSE_TEXT" : "Choose",
     "DATEPICKER_TODAY_TEXT" : "today",
-    "ARCHIVE_GAMEDATE_TEXT" : "Game date"
+    "ARCHIVE_GAMEDATE_TEXT" : "Game date",
+    "HARD_MODE" : "Hard Mode",
+    "DARK_MODE" : "Dark Mode",
+    "HIGH_CONTRAST_MODE" : "High Contrast Mode",
+    "FRENCH" : "French",
+    "ENGLISH" : "English",
+    "LANGUAGE" : "Language",
+    "SETTINGS" : "Settings"
   }
 }

@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { BaseModal } from './BaseModal'
 import { SettingsToggle } from './SettingsToggle'
+import { LanguageToggle } from './LanguageToggle'
 
 type Props = {
   isOpen: boolean
@@ -25,23 +26,27 @@ export const SettingsModal = ({
 }: Props) => {
   const { t } = useTranslation();
   return (
-    <BaseModal title="Settings" isOpen={isOpen} handleClose={handleClose}>
+    <BaseModal title={t("SETTINGS")} isOpen={isOpen} handleClose={handleClose}>
       <div className="mt-2 flex flex-col divide-y">
         <SettingsToggle
-          settingName="Hard Mode"
+          settingName={t("HARD_MODE")}
           flag={isHardMode}
           handleFlag={handleHardMode}
           description={t("HARD_MODE_DESCRIPTION")}
         />
         <SettingsToggle
-          settingName="Dark Mode"
+          settingName={t("DARK_MODE")}
           flag={isDarkMode}
           handleFlag={handleDarkMode}
         />
         <SettingsToggle
-          settingName="High Contrast Mode"
+          settingName={t("HIGH_CONTRAST_MODE")}
           flag={isHighContrastMode}
           handleFlag={handleHighContrastMode}
+          description={t("HIGH_CONTRAST_MODE_DESCRIPTION")}
+        />
+        <LanguageToggle
+          settingName={t("HIGH_CONTRAST_MODE")}
           description={t("HIGH_CONTRAST_MODE_DESCRIPTION")}
         />
       </div>
