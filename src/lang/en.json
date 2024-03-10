@@ -37,6 +37,18 @@
     "FRENCH" : "French",
     "ENGLISH" : "English",
     "LANGUAGE" : "Language",
-    "SETTINGS" : "Settings"
+    "SETTINGS" : "Settings",
+    "INSTRUCTION_MIGRATEION" : "Copy the migration code on your old device and paste into the input on the new device.",
+    "THIS_IS_MY": "This is my :",
+    "OLD_DEVICE": "Old device",
+    "NEW_DEVICE": "New device",
+    "COPY_MIGRATION_CODE": "Copy migration code",
+    "COPY" : "Copy",
+    "COPIED": "Copied",
+    "PASTE_MIGRATION_CODE": "Paste your migration code:",
+    "SAVE" : "Save",
+    "REALOAD": "The site will now reload.",
+    "CONFIRMATION_MIGRATION" : "Are you sure you want to override the statistics on this device? This action is not reversable.",
+    "TRANSFER_STATISTICS" : "Transfer your statistics"
   }
 }

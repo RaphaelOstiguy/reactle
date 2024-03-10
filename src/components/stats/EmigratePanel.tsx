@@ -6,10 +6,12 @@ import { encrypt } from '../../lib/encryption'
 import { loadGameStateFromLocalStorage } from '../../lib/localStorage'
 import { loadStats } from '../../lib/stats'
 import { MigrationStats } from '../modals/MigrateStatsModal'
+import { useTranslation } from 'react-i18next'
 
 export const EmigratePanel = () => {
+  const {t} = useTranslation()
   const [isCopyButtonEnabled, setIsCopyButtonEnabled] = useState(true)
-  const [copyButtonText, setCopyButtonText] = useState('Copy')
+  const [copyButtonText, setCopyButtonText] = useState(t("COPY"))
   const stats = loadStats()
   const gameState = loadGameStateFromLocalStorage(true)
 
@@ -22,7 +24,7 @@ export const EmigratePanel = () => {
 
   const copyEmigrationCodeToClipboard = () => {
     copyTextToClipboard(emigrationCode)
-    setCopyButtonText('Copied!')
+    setCopyButtonText(t("COPIED"))
     setIsCopyButtonEnabled(false)
   }
 
@@ -32,7 +34,7 @@ export const EmigratePanel = () => {
         htmlFor="message"
         className="mb-2 block text-left text-sm font-medium text-gray-900 dark:text-gray-400"
       >
-        Copy your migration code:
+        {t("COPY_MIGRATION_CODE")}
       </label>
       <textarea
         id="emigration-code"

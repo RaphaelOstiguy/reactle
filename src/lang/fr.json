@@ -37,6 +37,18 @@
     "FRENCH" : "Français",
     "ENGLISH" : "Anglais",
     "LANGUAGE" : "Langue",
-    "SETTINGS" : "Paramètres"
+    "SETTINGS" : "Paramètres",
+    "INSTRUCTION_MIGRATEION" : "Copier le code de migration sur vontre ancien appareil et coller le code dans le champ du nouvelle appareil.",
+    "THIS_IS_MY" : "Ceci est mon :",
+    "OLD_DEVICE" : "Ancien appareil",
+    "NEW_DEVICE" : "Nouvel appareil",
+    "COPY_MIGRATION_CODE" : "Copier le code de migration",
+    "COPY" : "Copier",
+    "COPIED": "Copier!",
+    "PASTE_MIGRATION_CODE": "Coller le code de migration:",
+    "SAVE": "Sauvegarder",
+    "REALOAD": "Le site va être rechargé",
+    "CONFIRMATION_MIGRATION" : "Ête vous sûr de vouloir transférer vos statistiques vers un nouvel appareil ? Cette action est irréversible.",
+    "TRANSFER_STATISTICS" : "Transférer les statistiques"
   }
 }
