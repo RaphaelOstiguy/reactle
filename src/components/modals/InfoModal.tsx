@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Cell } from '../grid/Cell'
 import { BaseModal } from './BaseModal'
 
@@ -7,11 +8,12 @@ type Props = {
 }
 
 export const InfoModal = ({ isOpen, handleClose }: Props) => {
+  const {t} = useTranslation()
+
   return (
-    <BaseModal title="How to play" isOpen={isOpen} handleClose={handleClose}>
+    <BaseModal title={t("HOW_TO_PLAY")} isOpen={isOpen} handleClose={handleClose}>
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        Guess the word in 6 tries. After each guess, the color of the tiles will
-        change to show how close your guess was to the word.
+        {t("GAME_DESCRIPTION")}
       </p>
 
       <div className="mb-1 mt-4 flex justify-center">
@@ -27,7 +29,7 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
         <Cell value="Y" isCompleted={true} />
       </div>
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        The letter W is in the word and in the correct spot.
+        {t("CORRECT_SPOT")}
       </p>
 
       <div className="mb-1 mt-4 flex justify-center">
@@ -43,7 +45,7 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
         <Cell value="T" isCompleted={true} />
       </div>
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        The letter L is in the word but in the wrong spot.
+        {t("WRONG_SPOT")}
       </p>
 
       <div className="mb-1 mt-4 flex justify-center">
@@ -54,17 +56,16 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
         <Cell value="E" isCompleted={true} />
       </div>
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        The letter U is not in the word in any spot.
+        {t("NOT_CONTAINED")}
       </p>
 
       <p className="mt-6 text-sm italic text-gray-500 dark:text-gray-300">
-        This is an open source version of the word guessing game we all know and
-        love -{' '}
+        {t("OPEN_SOURCE")}{' '}
         <a
           href="https://github.com/cwackerfuss/react-wordle"
           className="font-bold underline"
         >
-          check out the code here
+          {t("OPEN_SOURCE_LINK")}
         </a>{' '}
       </p>
     </BaseModal>

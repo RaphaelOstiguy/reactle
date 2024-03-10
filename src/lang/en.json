@@ -49,6 +49,13 @@
     "SAVE" : "Save",
     "REALOAD": "The site will now reload.",
     "CONFIRMATION_MIGRATION" : "Are you sure you want to override the statistics on this device? This action is not reversable.",
-    "TRANSFER_STATISTICS" : "Transfer your statistics"
+    "TRANSFER_STATISTICS" : "Transfer your statistics",
+    "HOW_TO_PLAY" : "How to play",
+    "GAME_DESCRIPTION" : "Guess the word in 6 tries. After each guess, the color of the tiles will change to show how close your guess was to the word.",
+    "CORRECT_SPOT": "The letter W is in the word and in the correct spot.",
+    "WRONG_SPOT": "The letter L is in the word but in the wrong spot.",
+    "NOT_CONTAINED": "The letter U is not in the word in any spot.",
+    "OPEN_SOURCE": "This is an open source version of the word guessing game we all know and love - ",
+    "OPEN_SOURCE_LINK": "check out the code here"
   }
 }
