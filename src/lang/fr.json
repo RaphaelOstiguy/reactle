@@ -10,6 +10,8 @@
     "HARD_MODE_ALERT_MESSAGE": "Le mode difficile ne peut être activé qu'au début !",
     "HARD_MODE_DESCRIPTION": "Tous les indices révélés doivent être utilisés dans les suppositions suivantes",
     "HIGH_CONTRAST_MODE_DESCRIPTION": "Pour une meilleure vision des couleurs",
+    "CHANGE_LAGUAGE" : "Pour changer de langue",
+    "CANT_CHANGE_LANGUAGE": "Impossible de changer de langue pendant une partie",
     "CORRECT_WORD_MESSAGE" : "Le mot était {{solution}}",
     "WRONG_SPOT_MESSAGE" : "Doit utiliser {{guess}} à la position {{position}}",
     "NOT_CONTAINED_MESSAGE" : "La tentative doit contenir {{letter}}",

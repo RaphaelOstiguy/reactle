@@ -12,6 +12,9 @@ type Props = {
   handleDarkMode: Function
   isHighContrastMode: boolean
   handleHighContrastMode: Function
+  guesses: number
+  isGameLost: boolean
+  isGameWon: boolean
 }
 
 export const SettingsModal = ({
@@ -23,6 +26,9 @@ export const SettingsModal = ({
   handleDarkMode,
   isHighContrastMode,
   handleHighContrastMode,
+  guesses,
+  isGameLost,
+  isGameWon,
 }: Props) => {
   const { t } = useTranslation();
   return (
@@ -46,8 +52,11 @@ export const SettingsModal = ({
           description={t("HIGH_CONTRAST_MODE_DESCRIPTION")}
         />
         <LanguageToggle
-          settingName={t("HIGH_CONTRAST_MODE")}
-          description={t("HIGH_CONTRAST_MODE_DESCRIPTION")}
+          settingName={t("LANGUAGE")}
+          description={t("CHANGE_LAGUAGE")}
+          guesses={guesses}
+          isGameLost={isGameLost}
+          isGameWon={isGameWon}
         />
       </div>
     </BaseModal>

@@ -44,7 +44,8 @@ import {
   unicodeLength,
 } from './lib/words'
 import { useTranslation } from "react-i18next";
-
+import i18n from 'i18next';
+import { is } from 'date-fns/locale'
 
 function App() {
 
@@ -76,17 +77,26 @@ function App() {
   const [isHighContrastMode, setIsHighContrastMode] = useState(
     getStoredIsHighContrastMode()
   )
+  
   const [isRevealing, setIsRevealing] = useState(false)
   const [guesses, setGuesses] = useState<string[]>(() => {
     const loaded = loadGameStateFromLocalStorage(isLatestGame)
-    if (loaded?.solution !== solution) {
+    const today = new Date();
+    const dateOnly = today.toISOString().split('T')[0];
+
+    if (loaded?.date !== dateOnly ) {
       return []
+      
     }
-    const gameWasWon = loaded.guesses.includes(solution)
-    if (gameWasWon) {
+    
+    if (loaded?.state === "won") {
       setIsGameWon(true)
+      
+      if (!loaded.guesses.includes(solution)) {
+        return [solution]
+      }
     }
-    if (loaded.guesses.length === MAX_CHALLENGES && !gameWasWon) {
+    if (loaded?.state === "lost") {
       setIsGameLost(true)
       showErrorAlert(t("CORRECT_WORD_MESSAGE", {solution}), {
         persist: true,
@@ -113,6 +123,7 @@ function App() {
     }
   })
 
+
   useEffect(() => {
     DISCOURAGE_INAPP_BROWSERS &&
       isInAppBrowser() &&
@@ -121,6 +132,13 @@ function App() {
         durationMs: 7000,
       })
   }, [showErrorAlert, t])
+
+  useEffect(() => {
+    const language = localStorage.getItem('language');
+    if (language) {
+      i18n.changeLanguage(language);
+    }
+  }, []);
 
   useEffect(() => {
     if (isDarkMode) {
@@ -160,8 +178,11 @@ function App() {
   }
 
   useEffect(() => {
-    saveGameStateToLocalStorage(getIsLatestGame(), { guesses, solution })
-  }, [guesses])
+    const today = new Date();
+    const date = today.toISOString().split('T')[0];
+    const state = isGameWon ? "won" : isGameLost ? "lost" : "active"
+    saveGameStateToLocalStorage(getIsLatestGame(), { guesses, date, state })
+  }, [guesses, isGameLost, isGameWon])
 
   useEffect(() => {
     if (isGameWon) {
@@ -239,7 +260,6 @@ function App() {
     }, REVEAL_TIME_MS * solution.length)
 
     const winningWord = isWinningWord(currentGuess)
-
     if (
       unicodeLength(currentGuess) === solution.length &&
       guesses.length < MAX_CHALLENGES &&
@@ -355,6 +375,9 @@ function App() {
             handleDarkMode={handleDarkMode}
             isHighContrastMode={isHighContrastMode}
             handleHighContrastMode={handleHighContrastMode}
+            guesses={guesses.length}
+            isGameLost={isGameLost}
+            isGameWon={isGameWon}
           />
           <AlertContainer />
         </div>

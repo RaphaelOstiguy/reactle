@@ -10,6 +10,8 @@
     "HARD_MODE_ALERT_MESSAGE": "Hard Mode can be enabled only at the start!",
     "HARD_MODE_DESCRIPTION": "Any revealed hints must be used in subsequent guesses",
     "HIGH_CONTRAST_MODE_DESCRIPTION": "For improved color vision",
+    "CHANGE_LAGUAGE": "For change the language",
+    "CANT_CHANGE_LANGUAGE": "You can't change the language in the middle of the game",
     "CORRECT_WORD_MESSAGE" : "The word was {{solution}}",
     "WRONG_SPOT_MESSAGE" : "Must use {{guess}} in position {{position}}",
     "NOT_CONTAINED_MESSAGE" : "Guess must contain {{letter}}",

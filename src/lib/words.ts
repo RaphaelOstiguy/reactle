@@ -10,7 +10,9 @@ import queryString from 'query-string'
 
 import { ENABLE_ARCHIVED_GAMES } from '../constants/settings'
 import { VALID_GUESSES } from '../constants/validGuesses'
+import { VALID_GUESSES_FR } from '../constants/validGuessesFr'
 import { WORDS } from '../constants/wordlist'
+import { WORDS_FR } from '../constants/wordlistFr'
 import { getToday } from './dateutils'
 import { getGuessStatuses } from './statuses'
 import i18n from 'i18next';
@@ -20,10 +22,21 @@ export const firstGameDate = new Date(2022, 0)
 export const periodInDays = 1
 
 export const isWordInWordList = (word: string) => {
-  return (
-    WORDS.includes(localeAwareLowerCase(word)) ||
-    VALID_GUESSES.includes(localeAwareLowerCase(word))
-  )
+
+  
+  let language = localStorage.getItem('language');
+  if ( language === 'en') {
+    return (
+      WORDS.includes(localeAwareLowerCase(word)) ||
+      VALID_GUESSES.includes(localeAwareLowerCase(word))
+    )
+  } else {
+    return (
+      WORDS_FR.includes(localeAwareLowerCase(word)) ||
+      VALID_GUESSES_FR.includes(localeAwareLowerCase(word))
+    )
+  }
+ 
 }
 
 export const isWinningWord = (word: string) => {
@@ -122,8 +135,14 @@ export const getWordOfDay = (index: number) => {
   if (index < 0) {
     throw new Error('Invalid index')
   }
+  
+  const language = localStorage.getItem('language');
 
-  return localeAwareUpperCase(WORDS[index % WORDS.length])
+  if ( language === 'en') {
+    return localeAwareUpperCase(WORDS[index % WORDS.length])
+  } else {
+    return localeAwareUpperCase(WORDS_FR[index % WORDS_FR.length])
+  }
 }
 
 export const getSolution = (gameDate: Date) => {
