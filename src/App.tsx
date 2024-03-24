@@ -45,10 +45,8 @@ import {
 } from './lib/words'
 import { useTranslation } from "react-i18next";
 import i18n from 'i18next';
-import { is } from 'date-fns/locale'
 
 function App() {
-
   const { t } = useTranslation();
   const isLatestGame = getIsLatestGame()
   const gameDate = getGameDate()
